@@ -957,7 +957,7 @@ static const float WINDOWS_MOUSE_WHEEL_SCROLL_LOCK_TIMER    = 2.00f;    // Lock 
 
 // Docking
 static const float DOCKING_TRANSPARENT_PAYLOAD_ALPHA        = 0.50f;    // For use with io.ConfigDockingTransparentPayload. Apply to Viewport _or_ WindowBg in host viewport.
-static const float DOCKING_SPLITTER_SIZE                    = 2.0f;
+static const float DOCKING_SPLITTER_SIZE                    = 4.0f;
 
 //-------------------------------------------------------------------------
 // [SECTION] FORWARD DECLARATIONS
@@ -15863,8 +15863,9 @@ static void ImGui::DockNodeCalcTabBarLayout(const ImGuiDockNode* node, ImRect* o
     float button_sz = g.FontSize;
 
     ImVec2 window_menu_button_pos = r.Min;
-    r.Min.x += style.FramePadding.x;
-    r.Max.x -= style.FramePadding.x;
+    // NOTE(Alex): Make the tabs aligned with the window left border.
+    // r.Min.x += g.Style.FramePadding.x;
+    r.Max.x -= g.Style.FramePadding.x;
     if (node->HasCloseButton)
     {
         r.Max.x -= button_sz;
